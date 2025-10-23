@@ -1,0 +1,18 @@
+[
+  {
+    "ticker": "AAPL",
+    "name": "Apple"
+  },
+  {
+    "ticker": "GOOGL",
+    "name": "Alphabet"
+  },
+  {
+    "ticker": "MSFT",
+    "name": "Microsoft"
+  },
+  {
+    "ticker": "2330.TW",
+    "name": "台積電"
+  }
+]
