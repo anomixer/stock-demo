@@ -105,3 +105,6 @@ temp/
 
 # Local Netlify folder
 .netlify
+
+# Pycache
+__pycache__
