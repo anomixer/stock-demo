@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     title: '股票即時監控系統',
     description: '現代化網頁版股票即時監控應用程式',
     icons: {
-        icon: '/favicon.svg',
+        icon: '/favicon.ico',
     },
 }
 

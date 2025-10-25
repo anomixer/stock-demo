@@ -24,6 +24,7 @@ export const StockDashboard = () => {
     const [editingTicker, setEditingTicker] = useState<string | null>(null)
     const [tempName, setTempName] = useState('')
     const [countdown, setCountdown] = useState(60)
+    const [cardSize, setCardSize] = useState<'small' | 'medium' | 'large'>('medium')
 
     // Search Modal State
     const [isSearchModalOpen, setIsSearchModalOpen] = useState(false)
@@ -211,7 +212,7 @@ export const StockDashboard = () => {
                     return
                 }
 
-                const validatedStocks = importData.stocks.filter((stock: any) => 
+                const validatedStocks = importData.stocks.filter((stock: any) =>
                     typeof stock === 'object' && typeof stock.ticker === 'string' && typeof stock.name === 'string'
                 );
 
@@ -310,6 +311,44 @@ export const StockDashboard = () => {
         return { up, down, unchanged, total: stocks.length };
     }, [stocks, prices, previousPrices]);
 
+    const getCardClass = (size: 'small' | 'medium' | 'large') => {
+        switch (size) {
+            case 'small': return 'p-4'
+            case 'medium': return 'p-6'
+            case 'large': return 'p-8'
+        }
+    }
+
+    const getTextSize = (size: 'small' | 'medium' | 'large') => {
+        switch (size) {
+            case 'small': return 'text-lg'
+            case 'medium': return 'text-xl'
+            case 'large': return 'text-2xl'
+        }
+    }
+
+    const getGridClass = (size: 'small' | 'medium' | 'large') => {
+        switch (size) {
+            case 'small': return 'grid-cols-4 md:grid-cols-5 lg:grid-cols-6'
+            case 'medium': return 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+            case 'large': return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+        }
+    }
+
+    const cycleCardSize = () => {
+        if (cardSize === 'small') setCardSize('medium')
+        else if (cardSize === 'medium') setCardSize('large')
+        else setCardSize('small')
+    }
+
+    const getSizeLabel = (size: 'small' | 'medium' | 'large') => {
+        switch (size) {
+            case 'small': return '小'
+            case 'medium': return '中'
+            case 'large': return '大'
+        }
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 transition-colors">
             <div className="max-w-7xl mx-auto">
@@ -320,12 +359,21 @@ export const StockDashboard = () => {
                         <p className="text-gray-600 dark:text-gray-400">即時監控您的投資組合，每 60 秒自動更新股價</p>
                         <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             <span>總共: {stockSummary.total} | </span>
-                            <span className="text-green-600">漲: {stockSummary.up}</span> | 
-                            <span className="text-red-600">跌: {stockSummary.down}</span> | 
+                            <span className="text-green-600">漲: {stockSummary.up}</span> |
+                            <span className="text-red-600">跌: {stockSummary.down}</span> |
                             <span>平: {stockSummary.unchanged}</span>
                         </div>
                     </div>
-                    <ThemeToggle />
+                    <div className="flex items-center gap-4">
+                        <Button
+                            variant="outline"
+                            onClick={cycleCardSize}
+                            className="px-3 py-1 text-sm"
+                        >
+                            卡片: {getSizeLabel(cardSize)}
+                        </Button>
+                        <ThemeToggle />
+                    </div>
                 </div>
 
                 {/* Control Panel */}
@@ -365,7 +413,7 @@ export const StockDashboard = () => {
                 {stocks.length === 0 ? (
                     <Card className="p-8 text-center"><p>尚未新增任何股票</p></Card>
                 ) : (
-                    <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+                    <div className={`grid gap-4 ${getGridClass(cardSize)}`}>
                         {stocks.map((stock, index) => {
                             const currentPrice = prices[stock.ticker]
                             const previousPrice = previousPrices[stock.ticker]
@@ -375,7 +423,7 @@ export const StockDashboard = () => {
                             return (
                                 <Card
                                     key={stock.ticker}
-                                    className={`p-6 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 cursor-move transition-all duration-200 ${draggedIndex === index ? 'opacity-50' : ''} ${dragOverIndex === index ? 'ring-2 ring-blue-500' : ''}`}
+                                    className={`${getCardClass(cardSize)} bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 cursor-move transition-all duration-200 ${draggedIndex === index ? 'opacity-50' : ''} ${dragOverIndex === index ? 'ring-2 ring-blue-500' : ''}`}
                                     draggable
                                     onDragStart={(e) => handleDragStart(e, index)}
                                     onDragEnd={handleDragEnd}
@@ -394,25 +442,24 @@ export const StockDashboard = () => {
                                                         if (e.key === 'Enter') handleNameChange(stock.ticker)
                                                         if (e.key === 'Escape') handleCancelEditing()
                                                     }}
-                                                    className="w-full px-2 py-1 text-lg font-semibold bg-gray-100 dark:bg-gray-700 border border-blue-500 rounded-md outline-none"
+                                                    className={`w-full px-2 py-1 ${cardSize === 'small' ? 'text-sm' : cardSize === 'medium' ? 'text-lg' : 'text-xl'} font-semibold bg-gray-100 dark:bg-gray-700 border border-blue-500 rounded-md outline-none`}
                                                     autoFocus
                                                 />
                                             ) : (
-                                                <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">{stock.name}</h3>
+                                                <h3 className={`font-semibold ${cardSize === 'small' ? 'text-sm' : cardSize === 'medium' ? 'text-lg' : 'text-xl'} text-gray-900 dark:text-gray-100`}>{stock.name}</h3>
                                             )}
-                                            <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">{stock.ticker}</p>
+                                            <p className={`${cardSize === 'small' ? 'text-xs' : 'text-sm'} text-gray-500 dark:text-gray-400 font-mono`}>{stock.ticker}</p>
                                         </div>
                                         <StockMenu stock={stock} onEdit={handleStartEditing} onDelete={confirmDeleteStock} />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                                        <div className={`${getTextSize(cardSize)} font-bold text-gray-900 dark:text-gray-100`}>
                                             {hasPrice ? `$${currentPrice.toFixed(2)}` : <span className="text-gray-400">載入中...</span>}
                                         </div>
                                         {changeInfo && (
-                                            <div className={`flex items-center gap-2 text-sm ${
-                                                changeInfo.isUnchanged ? 'text-gray-500' : changeInfo.isPositive ? 'text-green-600' : 'text-red-600'
-                                            }`}>
+                                            <div className={`flex items-center gap-2 ${cardSize === 'small' ? 'text-xs' : 'text-sm'} ${changeInfo.isUnchanged ? 'text-gray-500' : changeInfo.isPositive ? 'text-green-600' : 'text-red-600'
+                                                }`}>
                                                 {changeInfo.isUnchanged ? <Minus className="w-4 h-4" /> : changeInfo.isPositive ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
                                                 <span>
                                                     {changeInfo.isUnchanged ? '0.00 (0.00%)' : `${changeInfo.change > 0 ? '+' : ''}${changeInfo.change.toFixed(2)} (${changeInfo.change > 0 ? '+' : ''}${changeInfo.changePercent.toFixed(2)}%)`}
@@ -430,7 +477,7 @@ export const StockDashboard = () => {
             <StockSearchModal isOpen={isSearchModalOpen} onClose={() => setIsSearchModalOpen(false)} onAddStock={handleAddStock} />
 
             {deleteConfirm.isOpen && (
-                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
                     <Card className="w-full max-w-md">
                         <div className="p-6">
                             <h3 className="text-lg font-semibold mb-4">確認刪除</h3>
