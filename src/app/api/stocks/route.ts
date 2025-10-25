@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// Force dynamic rendering for API routes to avoid static export errors
+export const dynamic = 'force-dynamic';
+
 // 真正的Yahoo Finance搜尋API，完全不再使用本地查表，而是實時查詢Yahoo Finance
 async function realYahooFinanceSearch(keyword: string) {
     const results = [];
@@ -299,10 +302,7 @@ async function getRealStockPrices(symbols: string[]) {
 }
 
 export async function GET(request: Request) {
-    // For static export, API routes are handled by Cloudflare Pages Functions
-    // But to avoid prerender errors, we can make it dynamic
-    const url = new URL(request.url);
-    const { searchParams } = url;
+    const { searchParams } = new URL(request.url);
     const action = searchParams.get('action');
 
     try {
