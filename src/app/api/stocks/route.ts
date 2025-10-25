@@ -299,7 +299,10 @@ async function getRealStockPrices(symbols: string[]) {
 }
 
 export async function GET(request: Request) {
-    const { searchParams } = new URL(request.url);
+    // For static export, API routes are handled by Cloudflare Pages Functions
+    // But to avoid prerender errors, we can make it dynamic
+    const url = new URL(request.url);
+    const { searchParams } = url;
     const action = searchParams.get('action');
 
     try {
