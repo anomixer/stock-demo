@@ -7,7 +7,7 @@ echo ================================================================
 echo.
 
 REM 檢查 Node.js 是否安裝
-node --version >nul 2>&1
+call node --version >nul 2>&1
 if errorlevel 1 (
     echo ❌ 錯誤：Node.js 未安裝
     echo 請前往 https://nodejs.org/ 下載安裝 Node.js
@@ -16,7 +16,7 @@ if errorlevel 1 (
 )
 
 REM 檢查 npm 是否安裝
-npm --version >nul 2>&1
+call npm --version >nul 2>&1
 if errorlevel 1 (
     echo ❌ 錯誤：npm 未安裝
     pause
@@ -24,7 +24,7 @@ if errorlevel 1 (
 )
 
 REM 檢查 git 是否安裝
-git --version >nul 2>&1
+call git --version >nul 2>&1
 if errorlevel 1 (
     echo ❌ 錯誤：Git 未安裝
     echo 請安裝 Git 以繼續部署
@@ -151,7 +151,7 @@ REM 更新 wrangler.toml 中的 account_id
 powershell -Command "(Get-Content wrangler.toml) -replace 'your-account-id', '%CLOUDFLARE_ACCOUNT_ID%' | Set-Content wrangler.toml"
 
 echo 🔑 登入 Wrangler...
-wrangler login --token %CLOUDFLARE_API_TOKEN%
+call wrangler login --token %CLOUDFLARE_API_TOKEN%
 
 if errorlevel 1 (
     echo ❌ Wrangler 登入失敗
@@ -160,7 +160,7 @@ if errorlevel 1 (
 )
 
 echo 🚀 部署 Cloudflare Pages Functions...
-wrangler pages deploy out --project-name stock-demo-api
+call wrangler pages deploy out --project-name stock-demo-api
 
 if errorlevel 1 (
     echo ❌ Cloudflare Pages 部署失敗

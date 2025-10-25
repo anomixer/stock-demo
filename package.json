@@ -8,7 +8,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "export": "next build" // Static export is handled by output: 'export' in next.config.js
+        "export": "next build"
     },
     "keywords": [
         "stock",
