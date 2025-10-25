@@ -60,11 +60,11 @@
 | **📊 顯示效果** | 文字表格 | 卡片式設計、響應式、3欄顯示、股票名稱即時編輯 |
 | **🎨 使用界面** | 命令列介面 | 現代化網頁UI、暗色主題 |
 | **💾 資料儲存** | 本地JSON/CSV | localStorage + 匯入匯出JSON、安全重置 |
-| **☁️ 部署平台** | 本機執行 | Vercel/GitHub Pages免費 |
+| **☁️ 部署平台** | 本機執行 | Vercel/GitHub Pages/Cloudflare Pages免費 |
 | **⚡ 執行方式** | `python stock.py` | `npm install` `npm run dev` |
 | **🔧 開發語言** | Python 3.7+ | TypeScript + React |
 | **📚 套件需求** | yfinance, pandas | Next.js, Axios |
-| **🌐 網路依賴** | Yahoo Finance API | Yahoo Finance API + Vercel |
+| **🌐 網路依賴** | Yahoo Finance API | Yahoo Finance API + Cloudflare Workers |
 | **📱 行動支援** | ❌ 僅終端機 | ✅ 響應式設計 |
 | **📏 卡片自訂** | ❌ 不支援 | ✅ 大中小尺寸切換 |
 | **⚙️ 自訂程度** | 高 (程式碼修改) | 中 (組件調整) |
@@ -83,36 +83,68 @@
 #### 安裝步驟
 我們提供了自動安裝腳本，一鍵完成環境設定。
 
-**macOS / Linux:**
+**CLI版本：**
+
+macOS / Linux:
 ```bash
 # 賦予腳本執行權限
-chmod +x install.sh
+chmod +x CLI-install.sh
 
 # 執行安裝
-./install.sh
+./CLI-install.sh
 ```
 
-**Windows:**
+Windows:
 ```cmd
 # 直接執行批次檔
-install.bat
+CLI-install.bat
 ```
+
+**Web版本：**
+
+macOS / Linux:
+```bash
+# 賦予腳本執行權限
+chmod +x Web-install.sh
+
+# 執行安裝
+./Web-install.sh
+```
+
+Windows:
+```cmd
+# 直接執行批次檔
+Web-install.bat
+```
+
 安裝完成後，即可執行主程式。
 
-**執行程式:**
+**執行程式：**
+
+**CLI版本：**
 ```bash
 # macOS/Linux
-python3 stock.py
+./CLI-run.sh
 
 # Windows
-python stock.py
+CLI-run.bat
+```
+
+**Web版本：**
+```bash
+# macOS/Linux
+./Web-run.sh
+
+# Windows
+Web-run.bat
 ```
 
 ### 🌐 Web 版本 (Next.js)
 
 #### 線上體驗
 直接訪問線上DEMO，無需任何安裝：
-[https://anomixer.github.io/stock-demo](https://anomixer.github.io/stock-demo)
+- GitHub Pages: [https://anomixer.github.io/stock-demo](https://anomixer.github.io/stock-demo)
+- Cloudflare Pages: 部署後的 URL
 
 #### 本地開發
 如果您想在本地端運行或進行二次開發：
@@ -128,10 +160,18 @@ git clone https://github.com/anomixer/stock-demo.git
 cd stock-demo
 
 # 2. 安裝依賴套件
-npm install
+# macOS/Linux
+./Web-install.sh
 
-# 3. 啟動開發伺服器
-npm run dev
+# Windows
+Web-install.bat
+
+# 3. 啟動生產伺服器
+# macOS/Linux
+./Web-run.sh
+
+# Windows
+Web-run.bat
 ```
 啟動後，在瀏覽器打開 `http://localhost:3000` 即可看到應用程式。
 
@@ -235,15 +275,30 @@ pip --version
 
 我們提供了自動安裝腳本，可以快速完成套件安裝：
 
-#### macOS / Linux
+**CLI版本：**
+
+macOS / Linux:
 ```bash
-chmod +x install.sh
-./install.sh
+chmod +x CLI-install.sh
+./CLI-install.sh
 ```
 
-#### Windows
+Windows:
 ```cmd
-install.bat
+CLI-install.bat
+```
+
+**Web版本：**
+
+macOS / Linux:
+```bash
+chmod +x Web-install.sh
+./Web-install.sh
+```
+
+Windows:
+```cmd
+Web-install.bat
 ```
 
 自動腳本會執行以下操作：
@@ -261,14 +316,28 @@ cd stock-demo
 
 2. **安裝相依套件**
 
-**macOS / Linux:**
+**CLI版本：**
+
+macOS / Linux:
 ```bash
 pip3 install -r requirements.txt
 ```
 
-**Windows:**
+Windows:
 ```cmd
 pip install -r requirements.txt
+```
+
+**Web版本：**
+
+macOS / Linux:
+```bash
+npm install
+```
+
+Windows:
+```cmd
+npm install
 ```
 
 或手動安裝：
@@ -278,14 +347,28 @@ pip install yfinance pandas
 
 3. **執行程式**
 
-**macOS / Linux:**
+**CLI版本：**
+
+macOS / Linux:
 ```bash
-python3 stock.py
+./CLI-run.sh
 ```
 
-**Windows:**
+Windows:
 ```cmd
-python stock.py
+CLI-run.bat
+```
+
+**Web版本：**
+
+macOS / Linux:
+```bash
+./Web-run.sh
+```
+
+Windows:
+```cmd
+Web-run.bat
 ```
 
 
@@ -350,12 +433,21 @@ python stock.py
 ```
 stock-demo/
 ├── stock.py              # 主程式
-├── install.sh            # macOS/Linux 自動安裝腳本
-├── install.bat           # Windows 自動安裝腳本
+├── CLI-install.sh        # macOS/Linux CLI版本安裝腳本
+├── CLI-install.bat       # Windows CLI版本安裝腳本
+├── CLI-run.sh            # macOS/Linux CLI版本執行腳本
+├── CLI-run.bat           # Windows CLI版本執行腳本
+├── Web-install.sh        # macOS/Linux Web版本安裝腳本
+├── Web-install.bat       # Windows Web版本安裝腳本
+├── Web-run.sh            # macOS/Linux Web版本執行腳本
+├── Web-run.bat           # Windows Web版本執行腳本
 ├── stock_config.json     # 股票清單設定檔（自動生成）
 ├── stock_history.csv     # 股價歷史紀錄（自動生成）
 ├── README.md             # 專案說明文件
 ├── requirements.txt      # Python 套件相依清單
+├── functions/            # Cloudflare Pages Functions
+│   └── api/
+│       └── stocks.js     # 股票API Function
 └── .gitignore            # Git 忽略檔案設定
 ```
 
@@ -429,6 +521,12 @@ taiwan_stocks = {
 
 如果您想要在本機開發或自訂功能：
 
+#### Windows 用戶提示
+為了獲得最佳體驗，建議使用 **Windows Terminal** 而非傳統的 Command Prompt：
+1. 在 Microsoft Store 搜尋並安裝 "Windows Terminal"
+2. 設定 UTF-8 編碼以正確顯示中文和 emoji
+3. 享受現代化的終端機體驗
+
 #### 1. **準備環境**
 ```bash
 # 安裝 Node.js (如果還沒安裝)
@@ -450,13 +548,48 @@ cd stock-demo
 npm install
 ```
 
-#### 4. **啟動開發服務器**
+#### 4. **啟動生產服務器**
 ```bash
-npm run dev
+# macOS/Linux
+./Web-run.sh
+
+# Windows
+Web-run.bat
 ```
 
 #### 5. **開啟瀏覽器**
 前往 `http://localhost:3000` 開始使用
+
+### 🌐 部署到 Cloudflare Pages
+
+#### 部署步驟
+
+1. **準備專案**
+   - 確保專案已推送到 GitHub 倉庫
+   - 確認 `next.config.js` 已設定為靜態輸出
+   - 確認 `functions/api/stocks.js` 已存在
+
+2. **在 Cloudflare Dashboard 創建 Pages 專案**
+   - 前往 [Cloudflare Pages](https://pages.cloudflare.com/)
+   - 點擊 "Create a project"
+   - 選擇 "Connect to Git" 並連結您的 GitHub 倉庫
+   - 選擇專案倉庫
+
+3. **設定建置配置**
+   - **Build command**: `npm run build`
+   - **Build output directory**: (留空，Cloudflare 會自動偵測 Next.js 輸出)
+   - **Root directory**: (留空，如果專案在根目錄)
+   - 點擊 "Save and Deploy"
+
+4. **部署完成**
+   - 部署完成後，Cloudflare 會提供一個 URL，例如 `https://your-project.pages.dev`
+   - API 會自動透過 Pages Functions 處理 `/api/stocks` 請求
+
+#### 注意事項
+- 專案使用標準 Next.js 部署，前端和 API 都由 Cloudflare Pages 處理
+- API 請求會優先路由到 `functions/api/stocks.js` 中的 Cloudflare Worker
+- 確保 Yahoo Finance API 在 Cloudflare 環境中正常運作
+- 如果需要自訂域名，可以在 Pages 設定中添加
 
 ### 📱 行動裝置使用
 
@@ -564,19 +697,23 @@ export const taiwanStocks = {
 - **語言**：TypeScript
 - **樣式**：Tailwind CSS
 - **狀態管理**：React Query
-- **後端 API**：Vercel Functions
-- **部署**：GitHub Pages (前端) + Vercel (API)
+- **後端 API**：Cloudflare Workers (Pages Functions)
+- **部署**：GitHub Pages (前端) + Cloudflare Pages (API)
 
 ### 開發指令
 ```bash
-# 啟動開發服務器
-npm run dev
+# 啟動生產服務器
+# macOS/Linux
+./Web-run.sh
+
+# Windows
+Web-run.bat
 
 # 建置生產版本
 npm run build
 
-# 啟動生產服務器
-npm run start
+# 啟動開發服務器（開發時使用）
+npm run dev
 
 # 執行測試
 npm run test
@@ -650,6 +787,12 @@ A: 在命令提示字元中執行以下指令設定 UTF-8 編碼：
 ```cmd
 chcp 65001
 ```
+
+### Q: Windows 下 emoji 或中文無法正常顯示？
+A: 建議使用 Windows Terminal 而非傳統 Command Prompt：
+1. 在 Microsoft Store 搜尋並安裝 "Windows Terminal"
+2. 設定 UTF-8 編碼以正確顯示中文和 emoji
+3. 享受現代化的終端機體驗
 
 ### Q: macOS/Linux 提示權限不足？
 A: 使用 `pip3` 而非 `pip`，或加上 `--user` 參數：

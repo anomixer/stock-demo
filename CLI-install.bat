@@ -2,11 +2,11 @@
 chcp 65001 >nul
 setlocal enabledelayedexpansion
 
-REM 股票即時監控系統 - 自動安裝腳本 (Windows)
+REM 股票即時監控系統 - CLI版本自動安裝腳本 (Windows)
 REM 此腳本會自動檢查 Python 版本並安裝所需套件
 
 echo ========================================
-echo   📈 股票即時監控系統 - 自動安裝
+echo   📈 股票即時監控系統 - CLI版本安裝
 echo ========================================
 echo.
 
@@ -29,7 +29,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 REM 顯示 Python 版本
 for /f "tokens=*" %%i in ('python --version 2^>^&1') do set PYTHON_VERSION=%%i
-echo ✓ 偵測到 %PYTHON_VERSION%
+echo ✅ 偵測到 %PYTHON_VERSION%
 
 REM 檢查 Python 版本是否符合需求 (>= 3.7)
 python -c "import sys; exit(0 if sys.version_info >= (3, 7) else 1)" 2>nul
@@ -45,7 +45,7 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-echo ✓ Python 版本符合需求 (^>= 3.7)
+echo ✅ Python 版本符合需求 (^>= 3.7)
 echo.
 
 REM 檢查 pip 是否已安裝
@@ -60,7 +60,7 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 for /f "tokens=*" %%i in ('pip --version 2^>^&1') do set PIP_VERSION=%%i
-echo ✓ 偵測到 pip
+echo ✅ 偵測到 pip
 echo.
 
 REM 升級 pip
@@ -79,11 +79,11 @@ echo.
 
 if exist requirements.txt (
     pip install -r requirements.txt
-    
+
     if !ERRORLEVEL! EQU 0 (
         echo.
         echo ========================================
-        echo   ✅ 安裝完成！
+        echo   ✅ CLI版本安裝完成！
         echo ========================================
         echo.
         echo 已安裝以下套件：
@@ -91,7 +91,7 @@ if exist requirements.txt (
         echo   • pandas - 資料處理與分析
         echo.
         echo 執行程式：
-        echo   python stock.py
+        echo   CLI-run.bat
         echo.
         echo 提示：如果看到亂碼，請先執行：
         echo   chcp 65001

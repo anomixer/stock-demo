@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# 股票即時監控系統 - 自動安裝腳本 (macOS/Linux)
+# 股票即時監控系統 - CLI版本自動安裝腳本 (macOS/Linux)
 # 此腳本會自動檢查 Python 版本並安裝所需套件
 
 echo "========================================"
-echo "  📈 股票即時監控系統 - 自動安裝"
+echo "  📈 股票即時監控系統 - CLI版本安裝"
 echo "========================================"
 echo ""
 
@@ -80,11 +80,11 @@ echo ""
 
 if [ -f "requirements.txt" ]; then
     pip3 install -r requirements.txt
-    
+
     if [ $? -eq 0 ]; then
         echo ""
         echo "========================================"
-        echo "  ✅ 安裝完成！"
+        echo "  ✅ CLI版本安裝完成！"
         echo "========================================"
         echo ""
         echo "已安裝以下套件："
@@ -92,10 +92,10 @@ if [ -f "requirements.txt" ]; then
         echo "  • pandas - 資料處理與分析"
         echo ""
         echo "執行程式："
-        echo "  python3 stock.py"
+        echo "  ./CLI-run.sh"
         echo ""
         echo "或直接執行："
-        echo "  ./stock.py"
+        echo "  python3 stock.py"
         echo ""
     else
         echo ""

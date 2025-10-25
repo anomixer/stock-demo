@@ -359,9 +359,9 @@ export const StockDashboard = () => {
                         <p className="text-gray-600 dark:text-gray-400">即時監控您的投資組合，每 60 秒自動更新股價</p>
                         <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             <span>總共: {stockSummary.total} | </span>
-                            <span className="text-green-600">漲: {stockSummary.up}</span> |
-                            <span className="text-red-600">跌: {stockSummary.down}</span> |
-                            <span>平: {stockSummary.unchanged}</span>
+                            <span className="text-green-600"> 漲: {stockSummary.up}</span> |
+                            <span className="text-red-600"> 跌: {stockSummary.down}</span> |
+                            <span> 平: {stockSummary.unchanged}</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
