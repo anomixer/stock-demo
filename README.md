@@ -117,6 +117,21 @@ Windows:
 Web-install.bat
 ```
 
+**部署腳本：**
+
+使用新的 WEB-deploy.sh (Linux/macOS) 或 WEB-deploy.bat (Windows) 來自動部署到 GitHub Pages 和 Cloudflare Workers。
+
+macOS / Linux:
+```bash
+chmod +x WEB-deploy.sh
+./WEB-deploy.sh
+```
+
+Windows:
+```cmd
+WEB-deploy.bat
+```
+
 安裝完成後，即可執行主程式。
 
 **執行程式：**

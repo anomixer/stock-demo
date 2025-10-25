@@ -1,0 +1,12 @@
+name = "stock-demo-api"
+compatibility_date = "2023-12-01"
+
+[pages]
+project_name = "stock-demo"
+account_id = "your-account-id"  # 將在腳本中替換
+
+[functions]
+directory = "functions"
+
+[env.production]
+pages = { project_name = "stock-demo" }

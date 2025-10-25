@@ -166,9 +166,9 @@
 - ✅ **favicon 支援**: 瀏覽器標籤頁顯示自訂圖標
 
 ### 🔸 部署選擇多元
- - **本機執行**: CLI-run.sh/bat 或 Web-run.sh/bat
- - **雲端部署**: Vercel一鍵部署 / Cloudflare Pages
- - **靜態託管**: GitHub Pages支援
+  - **本機執行**: CLI-run.sh/bat 或 Web-run.sh/bat
+  - **雲端部署**: Vercel一鍵部署 / Cloudflare Pages
+  - **靜態託管**: GitHub Pages支援 (使用 WEB-deploy.sh/bat 自動部署)
 
 ### 💻 Windows 用戶提示
 為了獲得最佳體驗，建議使用 **Windows Terminal** 而非傳統的 Command Prompt：
