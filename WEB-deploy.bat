@@ -61,7 +61,7 @@ if "%CLOUDFLARE_API_TOKEN%"=="" (
 
 echo.
 echo 📦 安裝依賴套件...
-npm install
+call npm install
 
 if errorlevel 1 (
     echo ❌ 依賴套件安裝失敗
@@ -73,7 +73,7 @@ echo ✅ 依賴套件安裝完成
 echo.
 
 echo 🔨 建置應用程式...
-npm run build
+call npm run build
 
 if errorlevel 1 (
     echo ❌ 應用程式建置失敗
@@ -85,7 +85,7 @@ echo ✅ 應用程式建置完成
 echo.
 
 echo 📄 匯出靜態檔案...
-npm run export
+call npm run export
 
 if errorlevel 1 (
     echo ❌ 靜態檔案匯出失敗
@@ -135,7 +135,7 @@ echo ☁️ 部署 API 到 Cloudflare Workers...
 echo.
 
 echo 📦 安裝 Wrangler...
-npm install -g wrangler
+call npm install -g wrangler
 
 if errorlevel 1 (
     echo ❌ Wrangler 安裝失敗
