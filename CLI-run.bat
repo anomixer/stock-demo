@@ -47,7 +47,7 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-REM 檢查必要套件是否已安裝
+REM "檢查必要套件是否已安裝"
 echo 🔍 檢查必要套件...
 python -c "import yfinance, pandas" 2>nul
 if %ERRORLEVEL% NEQ 0 (

@@ -14,7 +14,7 @@
 - [📂 專案結構](#-專案結構)
 - [🔧 進階設定](#-進階設定)
 - [🎯 支援的股票市場](#-支援的股票市場)
-- [🐛 常見問題 (FAQ)](#-常見問題-faq)
+- [🐛 常見問題](#-常見問題)
 - [🤝 貢獻指南](#-貢獻指南)
 - [📝 授權條款](#-授權條款)
 - [🙏 致謝](#-致謝)
@@ -58,17 +58,17 @@
 | **🎯 核心功能** | 即時監控、漲跌計算 | 即時監控、拖拽排序、主題切換、股票總數與漲跌平統計、倒數計時 |
 | **🔍 搜尋方式** | 中文模糊搜尋 | 智慧即時搜尋、API驅動 |
 | **📊 顯示效果** | 文字表格 | 卡片式設計、響應式、3欄顯示、股票名稱即時編輯 |
-| **🎨 使用界面** | 命令列介面 | 現代化網頁UI、暗色主題 |
+| **🎨 使用介面** | 命令列介面 | 現代化網頁UI、暗色主題 |
 | **💾 資料儲存** | 本地JSON/CSV | localStorage + 匯入匯出JSON、安全重置 |
-| **☁️ 部署平台** | 本機執行 | Vercel/GitHub Pages/Cloudflare Pages免費 |
-| **⚡ 執行方式** | `python stock.py` | `npm install` `npm run dev` |
+| **⚡ 執行方式** | `python stock.py` | `npm install` `npm run build` `npm run start` |
 | **🔧 開發語言** | Python 3.7+ | TypeScript + React |
 | **📚 套件需求** | yfinance, pandas | Next.js, Axios |
 | **🌐 網路依賴** | Yahoo Finance API | Yahoo Finance API + Cloudflare Workers |
 | **📱 行動支援** | ❌ 僅終端機 | ✅ 響應式設計 |
 | **📏 卡片自訂** | ❌ 不支援 | ✅ 大中小尺寸切換 |
 | **⚙️ 自訂程度** | 高 (程式碼修改) | 中 (組件調整) |
-| **🚀 部署難度** | ⭐ 本機運行 | ⭐⭐ GitHub Pages自動部署 |
+| **☁️ 部署平台** | 僅本機執行 | Vercel/Cloudflare Pages免費 |
+| **🚀 部署難度** | ⭐ 本機執行 | ⭐⭐ Cloudflare自動部署 |
 
 ---
 
@@ -141,10 +141,6 @@ Web-run.bat
 
 ### 🌐 Web 版本 (Next.js)
 
-#### 線上體驗
-直接訪問線上DEMO，無需任何安裝：
-- GitHub Pages: [https://anomixer.github.io/stock-demo](https://anomixer.github.io/stock-demo)
-- Cloudflare Pages: 部署後的 URL
 
 #### 本地開發
 如果您想在本地端運行或進行二次開發：
@@ -510,17 +506,6 @@ taiwan_stocks = {
 - 現代網頁瀏覽器（Chrome、Firefox、Safari、Edge）
 - 網路連線（用於獲取即時股價）
 
-### 🌐 1. 線上使用
-
-直接訪問線上版本即可開始使用：
-1. 前往: https://anomixer.github.io/stock-demo
-2. 開始搜尋和監控股票
-3. 享受即時股價更新
-
-### 💻 2. 本地開發設定
-
-如果您想要在本機開發或自訂功能：
-
 #### Windows 用戶提示
 為了獲得最佳體驗，建議使用 **Windows Terminal** 而非傳統的 Command Prompt：
 1. 在 Microsoft Store 搜尋並安裝 "Windows Terminal"
@@ -560,36 +545,6 @@ Web-run.bat
 #### 5. **開啟瀏覽器**
 前往 `http://localhost:3000` 開始使用
 
-### 🌐 部署到 Cloudflare Pages
-
-#### 部署步驟
-
-1. **準備專案**
-   - 確保專案已推送到 GitHub 倉庫
-   - 確認 `next.config.js` 已設定為靜態輸出
-   - 確認 `functions/api/stocks.js` 已存在
-
-2. **在 Cloudflare Dashboard 創建 Pages 專案**
-   - 前往 [Cloudflare Pages](https://pages.cloudflare.com/)
-   - 點擊 "Create a project"
-   - 選擇 "Connect to Git" 並連結您的 GitHub 倉庫
-   - 選擇專案倉庫
-
-3. **設定建置配置**
-   - **Build command**: `npm run build`
-   - **Build output directory**: (留空，Cloudflare 會自動偵測 Next.js 輸出)
-   - **Root directory**: (留空，如果專案在根目錄)
-   - 點擊 "Save and Deploy"
-
-4. **部署完成**
-   - 部署完成後，Cloudflare 會提供一個 URL，例如 `https://your-project.pages.dev`
-   - API 會自動透過 Pages Functions 處理 `/api/stocks` 請求
-
-#### 注意事項
-- 專案使用標準 Next.js 部署，前端和 API 都由 Cloudflare Pages 處理
-- API 請求會優先路由到 `functions/api/stocks.js` 中的 Cloudflare Worker
-- 確保 Yahoo Finance API 在 Cloudflare 環境中正常運作
-- 如果需要自訂域名，可以在 Pages 設定中添加
 
 ### 📱 行動裝置使用
 
@@ -722,25 +677,6 @@ npm run test
 npm run lint
 ```
 
-## 🐛 常見問題
-
-### Q: 為什麼股價沒有更新？
-A: 可能原因：
-- 市場休市（檢查開盤時間）
-- 網路連線問題
-- 股票代碼錯誤
-- API 服務暫時中斷
-
-### Q: 如何新增其他市場的股票？
-A: 目前支援美股、台股、港股。如需其他市場，請修改搜尋邏輯並確保 API 支援。
-
-### Q: 資料會儲存在哪裡？
-A: 股票清單和歷史資料會儲存在瀏覽器的 localStorage，以及雲端資料庫中。
-
-### Q: 支援離線使用嗎？
-A: 基本功能支援離線瀏覽，但即時股價需要網路連線。
-
-
 ### v0.2 (新增Web版本)
 - 🌐 全新的網頁版介面
 - 📱 響應式設計，支援行動裝置
@@ -763,12 +699,15 @@ A: 基本功能支援離線瀏覽，但即時股價需要網路連線。
 
 ## 🐛 常見問題
 
-### Q: 顯示「無資料」怎麼辦？
+### Q: 為什麼股價沒有更新？顯示「無資料」？
 A: 可能原因：
 - 市場休市（週末、國定假日）
 - 網路連線問題
 - 股票代碼錯誤
 - Yahoo Finance API 暫時無法取得資料
+
+### Q: 如何新增其他市場的股票？
+A: 目前支援美股、台股、港股。如需其他市場，請修改搜尋邏輯並確保 API 支援。
 
 ### Q: 如何新增港股或其他市場？
 A: 使用完整的股票代碼，例如：
@@ -776,7 +715,13 @@ A: 使用完整的股票代碼，例如：
 - 日股：`7203.T`（Toyota）
 - 歐股：`BMW.DE`（BMW）
 
-### Q: 為什麼中文標題沒有置中？
+### Q: 資料會儲存在哪裡？
+A: 股票清單和歷史資料會儲存在瀏覽器的 localStorage，以及雲端資料庫中。
+
+### Q: 支援離線使用嗎？
+A: 基本功能支援離線瀏覽，但即時股價需要網路連線。
+
+### Q: 為什麼CLI版的中文標題沒有置中？
 A: 程式已針對中文字元寬度進行優化，確保您的終端機支援 UTF-8 編碼。
 
 ### Q: 可以同時監控多少支股票？

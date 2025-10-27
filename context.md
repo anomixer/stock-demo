@@ -165,11 +165,6 @@
 - ✅ **卡片大小切換**: 大中小三種尺寸，預設中
 - ✅ **favicon 支援**: 瀏覽器標籤頁顯示自訂圖標
 
-### 🔸 部署選擇多元
- - **本機執行**: CLI-run.sh/bat 或 Web-run.sh/bat
- - **雲端部署**: Vercel一鍵部署 / Cloudflare Pages
- - **靜態託管**: GitHub Pages支援
-
 ### 💻 Windows 用戶提示
 為了獲得最佳體驗，建議使用 **Windows Terminal** 而非傳統的 Command Prompt：
 1. 在 Microsoft Store 搜尋並安裝 "Windows Terminal"
@@ -211,36 +206,4 @@
 
 ---
 
-## 🚀 Cloudflare Pages 部署指南
-
-### 部署步驟
-
-1. **準備專案**
-   - 確保專案已推送到 GitHub 倉庫
-   - 確認 `next.config.js` 已設定為靜態輸出 (`output: 'export'`)
-   - 確認 `functions/api/stocks.js` 已存在
-
-2. **在 Cloudflare Dashboard 創建 Pages 專案**
-   - 前往 [Cloudflare Pages](https://pages.cloudflare.com/)
-   - 點擊 "Create a project"
-   - 選擇 "Connect to Git" 並連結您的 GitHub 倉庫
-   - 選擇專案倉庫
-
-3. **設定建置配置**
-   - **Build command**: `npm run build`
-   - **Build output directory**: (留空，Cloudflare 會自動偵測 Next.js 輸出)
-   - **Root directory**: (留空，如果專案在根目錄)
-   - 點擊 "Save and Deploy"
-
-4. **部署完成**
-   - 部署完成後，Cloudflare 會提供一個 URL，例如 `https://your-project.pages.dev`
-   - API 會自動透過 Pages Functions 處理 `/api/stocks` 請求
-
-### 注意事項
-- 專案使用標準 Next.js 部署，前端和 API 都由 Cloudflare Pages 處理
-- API 請求會優先路由到 `functions/api/stocks.js` 中的 Cloudflare Worker
-- 確保 Yahoo Finance API 在 Cloudflare 環境中正常運作
-- 如果需要自訂域名，可以在 Pages 設定中添加
-
----
 
