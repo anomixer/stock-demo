@@ -359,8 +359,8 @@ export const StockDashboard = () => {
                         <p className="text-gray-600 dark:text-gray-400">即時監控您的投資組合，每 60 秒自動更新股價</p>
                         <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             <span>總共: {stockSummary.total} | </span>
-                            <span className="text-green-600"> 漲: {stockSummary.up}</span> |
-                            <span className="text-red-600"> 跌: {stockSummary.down}</span> |
+                            <span className="text-red-600"> 漲: {stockSummary.up}</span> |
+                            <span className="text-green-600"> 跌: {stockSummary.down}</span> |
                             <span> 平: {stockSummary.unchanged}</span>
                         </div>
                     </div>
@@ -458,7 +458,7 @@ export const StockDashboard = () => {
                                             {hasPrice ? `$${currentPrice.toFixed(2)}` : <span className="text-gray-400">載入中...</span>}
                                         </div>
                                         {changeInfo && (
-                                            <div className={`flex items-center gap-2 ${cardSize === 'small' ? 'text-xs' : 'text-sm'} ${changeInfo.isUnchanged ? 'text-gray-500' : changeInfo.isPositive ? 'text-green-600' : 'text-red-600'
+                                            <div className={`flex items-center gap-2 ${cardSize === 'small' ? 'text-xs' : 'text-sm'} ${changeInfo.isUnchanged ? 'text-gray-500' : changeInfo.isPositive ? 'text-red-600' : 'text-green-600'
                                                 }`}>
                                                 {changeInfo.isUnchanged ? <Minus className="w-4 h-4" /> : changeInfo.isPositive ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
                                                 <span>

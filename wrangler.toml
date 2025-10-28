@@ -1,0 +1,13 @@
+# Cloudflare configuration for this repository (Pages-centric)
+# 專案名稱 (Cloudflare Pages 用於識別；實際以 --project-name 參數或後台設定為準)
+name = "stock-demo"
+
+# 指定靜態輸出目錄（本專案用 Next.js output: export 產生 out/）
+pages_build_output_dir = "out"
+
+# Pages Functions / 兼容性日期（建議固定一個日期避免行為飄移）
+compatibility_date = "2024-10-01"
+
+# 若將來需要 Workers 功能可在此擴充（例如 vars、routes 等）。
+
+

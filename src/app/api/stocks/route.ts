@@ -1,3 +1,8 @@
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+export const runtime = 'nodejs';
+
 import axios from 'axios';
 
 // 真正的Yahoo Finance搜尋API，完全不再使用本地查表，而是實時查詢Yahoo Finance

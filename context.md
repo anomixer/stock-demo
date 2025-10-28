@@ -49,7 +49,14 @@
 - ✅ 代碼重構 (移除冗餘、不一致)
 - ✅ 最終測試與驗證
 
-### Phase 8: UI 增強功能 (Day 9)
+### Phase 8: UI 增強功能與雲端部署優化 (Day 9)
+- ✅ 新增 `WEB-deploy.bat` 互動式部署到 Cloudflare Pages（可輸入專案名稱）
+- ✅ 使用 `cloud/next.config.js` 於部署時進行 `output: 'export'` 靜態匯出
+- ✅ 新增跨平台部署腳本：`WEB-deploy.bat`（Windows）與 `Web-deploy.sh`（macOS/Linux）
+- ✅ 部署文件補充：Wrangler 首次建立專案時，production branch 選擇 `main`
+- ✅ 建置過程暫時移除 Next API 路由避免匯出衝突，建置後自動還原
+- ✅ 生產端採用 `functions/api/stocks.js` 作為 Cloudflare Pages Functions 的 `/api/stocks`
+- ✅ 視覺規則更新：漲=紅、跌=綠（本機與部署一致）
 - ✅ 股票卡片大小切換功能 (小、中、大三種尺寸，預設中)
 - ✅ 主GUI右上方添加單一切換鈕 (循環切換: 小→中→大)
 - ✅ 響應式字體、間距和網格列數調整 (小: 4-6列，中: 2-4列，大: 1-3列)
@@ -88,6 +95,8 @@
     ├── tailwind.config.js (樣式配置)
     ├── Web-install.sh/bat (安裝腳本)
     ├── Web-run.sh/bat (執行腳本)
+    ├── WEB-deploy.bat (Cloudflare Pages 部署腳本，互動輸入專案名)
+    ├── cloud/next.config.js (部署時使用之 export 設定)
     └── package.json (NPM配置)
 ```
 

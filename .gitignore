@@ -21,6 +21,8 @@ dist/
 
 # Vercel
 .vercel
+.wrangler/
+wrangler-state.toml
 
 # TypeScript
 *.tsbuildinfo
@@ -82,6 +84,8 @@ jspm_packages/
 # Next.js build output
 .next
 out
+functions/.cache/
+functions/.tmp/
 
 # Nuxt.js build / generate output
 .nuxt
@@ -91,6 +95,8 @@ dist
 .cache/
 public
 !public/favicon.ico
+stock_history.csv
+stock_config.json
 
 # Storybook build outputs
 .out

@@ -46,6 +46,22 @@ for /f "tokens=*" %%i in ('npm --version 2^>^&1') do set NPM_VERSION=%%i
 echo ✅ 偵測到 npm %NPM_VERSION%
 echo.
 
+REM 若曾執行過雲端部署，可能殘留設定備份；先嘗試還原以利本機開發
+set ORIGINAL_NEXT_CONFIG=%CD%\next.config.js
+set TEMP_BACKUP=%CD%\next.config.local.backup
+if exist "%TEMP_BACKUP%" (
+    echo "偵測到部署備份，還原 next.config.js ..."
+    copy /Y "%TEMP_BACKUP%" "%ORIGINAL_NEXT_CONFIG%" >nul
+    del /Q "%TEMP_BACKUP%" >nul 2>nul
+)
+
+set API_ROUTE_PATH=%CD%\src\app\api\stocks\route.ts
+set API_ROUTE_BACKUP=%CD%\src\app\api\stocks\route.ts.off
+if exist "%API_ROUTE_BACKUP%" (
+    echo "偵測到 API 路由備份，還原 src\\app\\api\\stocks\\route.ts ..."
+    move /Y "%API_ROUTE_BACKUP%" "%API_ROUTE_PATH%" >nul
+)
+
 REM 檢查 package.json 是否存在
 if not exist package.json (
     echo ❌ 錯誤：找不到 package.json
@@ -71,6 +87,10 @@ if %ERRORLEVEL% EQU 0 (
     echo.
     echo 執行程式：
     echo   Web-run.bat
+    echo.
+    echo "（可選）部署到 Cloudflare Pages："
+    echo "  1) call npx --yes wrangler@latest login"
+    echo "  2) WEB-deploy.bat ^<專案名稱^>（或直接執行後依提示輸入）"
     echo.
     echo 啟動後在瀏覽器打開：
     echo   http://localhost:3000
